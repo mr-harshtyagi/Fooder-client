@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import RestaurentView from "./pages/restaurent-view"
+import CartView from "./pages/cart-view";
+import Checkout from "./pages/checkout-page";
+import { CartProvider } from "./cartcontext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AccountView from "./pages/account-view";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <CartProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/:restaurentId" element={<RestaurentView />} />
+        <Route path="/cart" element={<CartView />} />
+        <Route path="/account" element={<AccountView />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </BrowserRouter>
+  </CartProvider>,
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  document.getElementById("root")
+);

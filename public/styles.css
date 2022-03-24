@@ -1,0 +1,39 @@
+.slider-card{
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+    text-align: center;
+    background-color: #fecdaa;
+    color: white;
+}
+.restaurent-card{
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: #EEEDDE;
+    padding: 10px;
+    color: black;
+}
+.dish-card{
+    height: auto;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+
+}
+
+.appbar-item:hover{
+    color: black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.padding{
+    padding-left:20px ;
+    padding-right: 20px;
+}
