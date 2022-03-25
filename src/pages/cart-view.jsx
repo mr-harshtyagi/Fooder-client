@@ -24,7 +24,7 @@ export default function CartView() {
               style={{ fontSize: "1rem", color: "black", textAlign: "center" }}
             >
               {"₹ "}
-              {item.price} <i onClick={()=> removeDish(index)} className="bi bi-trash" style={{marginLeft:"20px",fontSize:"1.2rem"}}></i>
+              {item.price} <i onClick={()=> removeDish(index)} className="bi bi-trash-fill" style={{marginLeft:"20px",fontSize:"1.2rem",color:"red"}}></i>
             </h6>
           </div>
         );
