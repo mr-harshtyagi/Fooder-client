@@ -13,7 +13,18 @@
     border-radius: 10px;
     margin-bottom: 30px;
     text-align: center;
-    background-color: #EEEDDE;
+    background-color: #FFFBE9;
+    padding: 10px;
+    color: black;
+}
+
+.restaurent-card-offline{
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: #DFDFDE;
     padding: 10px;
     color: black;
 }

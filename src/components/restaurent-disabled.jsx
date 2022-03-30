@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
 
-export default function restaurent(props) {
+export default function restaurentDisabled(props) {
   
   return (
-    <Link to={String(props.id)}>
       <div
         style={{ textAlign: "left" }}
-        className="restaurent-card"
+        className="restaurent-card-offline"
       >
         <img  
           style={{
@@ -19,18 +17,17 @@ export default function restaurent(props) {
           alt="res-img"
         />
         <div style={{ display: "inline-block" }}>
-          <h5>{props.name}</h5>
+          <h5>{props.name}   (Offline 🥺😥)</h5>
           <h6
             className="bi bi-star-fill"
-            style={{ fontSize: "0.8rem", color: "grey" }}
+            style={{ fontSize: "0.8rem", color: "black" }}
           > {props.rating}
             <span> | {props.type}</span>
           </h6>
-          <h6 style={{ fontSize: "0.8rem",fontWeight:"400", color: "grey" }}>
+          <h6 style={{ fontSize: "0.8rem",fontWeight:"400", color: "black" }}>
             {props.category}
           </h6>
         </div>
       </div>
-    </Link>
   );
 }
