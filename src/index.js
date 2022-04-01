@@ -14,7 +14,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/:restaurentId" element={<RestaurentView />} />
-        <Route path="/cart" element={<CartView />} />
+        <Route path="/cart" element={<CartView/>} />
         <Route path="/account" element={<AccountView />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>

@@ -64,6 +64,7 @@ export default function RestaurentView() {
               dish.status && (
                 <Dish
                   key={dish.id}
+                  id={dish.id}
                   img={dish.img}
                   name={dish.name}
                   price={dish.price}

@@ -8,7 +8,18 @@ export default function CartView() {
   let navigate = useNavigate();
   const [empty,setEmpty]=useState(false);
   const {items,total,removeDish} =useContext(CartContext);
-  
+
+  function  postItemsArrayToServer(){
+   fetch("http://localhost:5000/checkout", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(items),
+   });
+  };
+
+    
   return (
     <div className="padding">
       <Navbar />
@@ -45,7 +56,11 @@ export default function CartView() {
           onClick={() => {
             if (total === 0) {
               setEmpty(true);
-            } else navigate("/checkout");
+            } else {
+              navigate("/checkout")
+              console.log(items)
+             postItemsArrayToServer();
+              };
           }}
           style={{ borderRadius: "30px" }}
           className="btn btn-success btn-lg"

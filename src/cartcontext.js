@@ -5,10 +5,9 @@ const CartContext=createContext();
     const [items,setItems]= useState([]);
     const [total,setTotal]=useState(0);
 
-    const addToCart= (name, price) => {
-        setItems((prevState) => [...prevState ,{name,price}])
+    const addToCart= (name, price,id) => {
+        setItems((prevState) => [...prevState ,{name,price,id}])
         setTotal(total => total + Number(price))
-
     };
      const removeDish = (i) => {
        setItems([...items.slice(0, i), ...items.slice(i+1, items.length)]);
