@@ -8,17 +8,6 @@ export default function CartView() {
   let navigate = useNavigate();
   const [empty,setEmpty]=useState(false);
   const {items,total,removeDish} =useContext(CartContext);
-
-  function  postItemsArrayToServer(){
-   fetch("http://localhost:5000/checkout", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(items),
-   });
-  };
-
     
   return (
     <div className="padding">
@@ -35,7 +24,12 @@ export default function CartView() {
               style={{ fontSize: "1rem", color: "black", textAlign: "center" }}
             >
               {"₹ "}
-              {item.price} <i onClick={()=> removeDish(index)} className="bi bi-trash-fill" style={{marginLeft:"20px",fontSize:"1.2rem",color:"red"}}></i>
+              {item.price}{" "}
+              <i
+                onClick={() => removeDish(index)}
+                className="bi bi-trash-fill"
+                style={{ marginLeft: "20px", fontSize: "1.2rem", color: "red" }}
+              ></i>
             </h6>
           </div>
         );
@@ -52,25 +46,33 @@ export default function CartView() {
       </div>
       <hr />
       <div className="col text-center">
-        <button
-          onClick={() => {
-            if (total === 0) {
-              setEmpty(true);
-            } else {
-              navigate("/checkout")
-              console.log(items)
-             postItemsArrayToServer();
-              };
-          }}
-          style={{ borderRadius: "30px" }}
-          className="btn btn-success btn-lg"
-        >
-          Proceed to Checkout
-        </button>
+          <button
+            onClick={() => {
+              if (total === 0) {
+                setEmpty(true);
+              } else {
+                navigate("/checkout");
+              }
+            }}
+            style={{ borderRadius: "30px" }}
+            className="btn btn-success btn-lg"
+          >
+            Proceed to Checkout
+          </button>
       </div>
-      {empty&&<h5 style={{marginTop:"20px", textAlign:"center", color:"white", backgroundColor:"black", borderRadius:"20px"}}>Please ADD items to your Cart</h5>}
-      
-      
+      {empty && (
+        <h5
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+            color: "white",
+            backgroundColor: "black",
+            borderRadius: "20px",
+          }}
+        >
+          Please ADD items to your Cart
+        </h5>
+      )}
 
       <Appbar />
     </div>
