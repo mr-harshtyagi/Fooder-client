@@ -6,9 +6,20 @@ import CartContext from "../cartcontext";
 
 export default function CartView() {
   let navigate = useNavigate();
-  const [empty,setEmpty]=useState(false);
+  const [cartEmpty,setCartEmpty]=useState(false);
+  const [differentRestaurent, setDifferentRestaurent] = useState(false);
   const {items,total,removeDish} =useContext(CartContext);
     
+  function checkfordifferentrestaurent(dishes){
+   let a;
+    for( a=0; a< (dishes.length-1) ;a++){
+      if((dishes[a].id/1000) !== (dishes[a+1].id/1000))
+      return true;
+    }
+    return false;
+  }
+
+
   return (
     <div className="padding">
       <Navbar />
@@ -46,21 +57,26 @@ export default function CartView() {
       </div>
       <hr />
       <div className="col text-center">
-          <button
-            onClick={() => {
-              if (total === 0) {
-                setEmpty(true);
-              } else {
-                navigate("/checkout");
-              }
-            }}
-            style={{ borderRadius: "30px" }}
-            className="btn btn-success btn-lg"
-          >
-            Proceed to Checkout
-          </button>
+        <button
+          onClick={() => {
+            if (total === 0) {
+              setCartEmpty(true);
+            } 
+            // check for diffrent restaurent items
+           if(checkfordifferentrestaurent(items)) {
+              setDifferentRestaurent(true);
+            }
+            else {
+              navigate("/checkout");
+            }
+          }}
+          style={{ borderRadius: "30px" }}
+          className="btn btn-success btn-lg"
+        >
+          Proceed to Checkout
+        </button>
       </div>
-      {empty && (
+      {cartEmpty && (
         <h5
           style={{
             marginTop: "20px",
@@ -71,6 +87,19 @@ export default function CartView() {
           }}
         >
           Please ADD items to your Cart
+        </h5>
+      )}
+      {differentRestaurent && (
+        <h5
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+            color: "white",
+            backgroundColor: "black",
+            borderRadius: "20px"
+          }}
+        >
+          Please ADD items from the same Restaurent.
         </h5>
       )}
 
