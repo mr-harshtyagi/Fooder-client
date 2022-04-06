@@ -18,8 +18,6 @@ export default function CartView() {
     }
     return false;
   }
-
-
   return (
     <div className="padding">
       <Navbar />
