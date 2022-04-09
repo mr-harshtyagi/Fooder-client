@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 function App() {
   const [restaurents, setRestaurents] = useState([]); 
   useEffect(() =>{
-      fetch("http://localhost:5000/restaurents")
-      .then(res=> res.json())
-      .then(json => setRestaurents(json));
+      fetch("https://fooder-app-server.herokuapp.com/restaurents")
+        .then((res) => res.json())
+        .then((json) => setRestaurents(json));
   },[])
   
   return (

@@ -9,7 +9,7 @@ export default function Checkout() {
   const [orderData, setOrderData] = useState({});
   useEffect(()=>   
   {
-    fetch("http://localhost:5000/checkout", {
+    fetch("https://fooder-app-server.herokuapp.com/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

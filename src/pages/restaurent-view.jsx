@@ -13,18 +13,16 @@ export default function RestaurentView() {
   useEffect(() => {
         axios
           .get(
-            `http://localhost:5000/getrestaurentdetails/${params.restaurentId}`
+            `https://fooder-app-server.herokuapp.com/getrestaurentdetails/${params.restaurentId}`
           )
           .then(function (response) {
-            setRestaurent(response.data)
-            setIsLoaded(true)
-            if(response.data.status === false)
-            navigate("/")
-            
+            setRestaurent(response.data);
+            setIsLoaded(true);
+            if (response.data.status === false) navigate("/");
           })
           .catch(function (error) {
             console.log(error);
-          })
+          });
 
   }, []);
   
