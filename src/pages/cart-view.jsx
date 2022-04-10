@@ -1,23 +1,16 @@
 import Navbar from "../components/navbar";
 import Appbar from "../components/appbar";
-import { useContext, useState} from "react";
+import { useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../cartcontext";
 
 export default function CartView() {
+  let a;
   let navigate = useNavigate();
+  const { items, total, removeDish } = useContext(CartContext);
   const [cartEmpty,setCartEmpty]=useState(false);
-  const [differentRestaurent, setDifferentRestaurent] = useState(false);
-  const {items,total,removeDish} =useContext(CartContext);
-    
-  function checkfordifferentrestaurent(dishes){
-   let a;
-    for( a=0; a< (dishes.length-1) ;a++){
-      if((dishes[a].id/1000) !== (dishes[a+1].id/1000))
-      return true;
-    }
-    return false;
-  }
+  const [differentRestaurent,setDifferentRestaurent] =useState(false)
+  
   return (
     <div className="padding">
       <Navbar />
@@ -35,7 +28,8 @@ export default function CartView() {
               {"₹ "}
               {item.price}{" "}
               <i
-                onClick={() => removeDish(index)}
+                onClick={() => {removeDish(index)
+                setDifferentRestaurent(false)}}
                 className="bi bi-trash-fill"
                 style={{ marginLeft: "20px", fontSize: "1.2rem", color: "red" }}
               ></i>
@@ -56,18 +50,28 @@ export default function CartView() {
       <hr />
       <div className="col text-center">
         <button
-          onClick={() => {
+          onClick={() => { 
             if (total === 0) {
               setCartEmpty(true);
             } 
-            // check for diffrent restaurent items
-           if(checkfordifferentrestaurent(items)) {
-              setDifferentRestaurent(true);
+            else
+            {
+              let diffres =0;
+              for (a = 0; a < (items.length-1); a++) {
+                if (
+                  Math.floor(Number(items[a].id / 1000)) !== Math.floor(Number(items[a+1].id / 1000))) {
+                  diffres=1;
+                  break;}}
+                if(diffres === 0){
+                  navigate("/checkout");
+                }
+                else{
+                  setDifferentRestaurent(true)
+                 console.log("Not allowed for checkout");
+                }
+                }
             }
-            else {
-              navigate("/checkout");
-            }
-          }}
+        }
           style={{ borderRadius: "30px" }}
           className="btn btn-success btn-lg"
         >
@@ -87,7 +91,8 @@ export default function CartView() {
           Please ADD items to your Cart
         </h5>
       )}
-      {differentRestaurent && (
+      {differentRestaurent && 
+      (
         <h5
           style={{
             marginTop: "20px",

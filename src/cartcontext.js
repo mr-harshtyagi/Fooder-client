@@ -14,7 +14,7 @@ const CartContext=createContext();
        setTotal((total) => total - Number(items[i].price));
      };
      return( 
-         <CartContext.Provider value={{items, addToCart,total,removeDish}}>
+         <CartContext.Provider value={{items, addToCart,total,removeDish,setItems,setTotal}}>
              {children}
          </CartContext.Provider>
      )

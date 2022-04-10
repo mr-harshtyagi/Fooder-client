@@ -4,14 +4,24 @@ import Card from "./featured-card";
 import Restaurent from "./restaurent";
 import RestaurentDisabled from "./restaurent-disabled";
 import { useEffect, useState } from "react";
-
+import SyncLoader from "react-spinners/SyncLoader"
+import axios from "axios";
 
 function App() {
   const [restaurents, setRestaurents] = useState([]); 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() =>{
-      fetch("https://fooder-app-server.herokuapp.com/restaurents")
-        .then((res) => res.json())
-        .then((json) => setRestaurents(json));
+       axios
+         .get(
+           "https://fooder-app-server.herokuapp.com/restaurents"
+         )
+         .then(function (response) {
+           setRestaurents(response.data);
+           setIsLoaded(true);
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
   },[])
   
   return (
@@ -28,28 +38,36 @@ function App() {
         <h6 style={{ color: "grey", marginBottom: "20px" }}>
           Discover unique tastes near you.
         </h6>
-        {restaurents.map((restaurent) =>
-          restaurent.status ? (
-            <Restaurent
-              key={restaurent.id}
-              id={restaurent.id}
-              img={restaurent.img}
-              name={restaurent.name}
-              rating={restaurent.rating}
-              type={restaurent.type}
-              category={restaurent.category}
-            />
-          ) : (
-            <RestaurentDisabled
-              key={restaurent.id}
-              id={restaurent.id}
-              img={restaurent.img}
-              name={restaurent.name}
-              rating={restaurent.rating}
-              type={restaurent.type}
-              category={restaurent.category}
-            />
-          )
+        {isLoaded ? (
+          <>
+            {restaurents.map((restaurent) =>
+              restaurent.status ? (
+                <Restaurent
+                  key={restaurent.id}
+                  id={restaurent.id}
+                  img={restaurent.img}
+                  name={restaurent.name}
+                  rating={restaurent.rating}
+                  type={restaurent.type}
+                  category={restaurent.category}
+                />
+              ) : (
+                <RestaurentDisabled
+                  key={restaurent.id}
+                  id={restaurent.id}
+                  img={restaurent.img}
+                  name={restaurent.name}
+                  rating={restaurent.rating}
+                  type={restaurent.type}
+                  category={restaurent.category}
+                />
+              )
+            )}
+          </>
+        ) : (
+          <div className="text-center mt-5">
+            <SyncLoader color={"#444645"} size={15} />
+          </div>
         )}
       </div>
       <Appbar />
