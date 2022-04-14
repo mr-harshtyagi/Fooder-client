@@ -2,7 +2,12 @@
 export default function Navbar() {
   return (
     <div style={{ marginBottom: "100px" }}>
-      <nav className="navbar fixed-top navbar-light bg-dark">
+      <nav
+        style={{
+          boxShadow: "0px 0px 8px 0px rgba(0,0,0,1)",
+        }}
+        className="navbar fixed-top navbar-light bg-dark"
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <i
