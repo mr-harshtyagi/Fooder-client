@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import CartContext from "../cartcontext";
 import { Link } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader"
+import axios from 'axios'
 
 export default function Checkout() {
   const {items,setItems,setTotal} = useContext(CartContext);
@@ -11,22 +12,20 @@ export default function Checkout() {
   const [isLoaded ,setIsLoaded] =useState(false);
   useEffect(()=>   
   {
-    fetch("https://fooder-app-server.herokuapp.com/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(items),
-    })
-      .then((response) => response.json())
-      .then((order_data) => {
-      setOrderData(order_data) 
+    axios
+      .post("https://fooder-app-server.herokuapp.com/checkout", {
+        items: items,
+        time: new Date().toString(),
+      })
+      .then(function (response) {
+      setOrderData(response.data) 
       setIsLoaded(true)
       setItems([])
-      setTotal(0)
-
-    })
-      .catch((err) => console.log(err));
+      setTotal(0);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   ,[]) 
   return (
