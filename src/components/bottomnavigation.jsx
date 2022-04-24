@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
+import Badge from "@mui/material/Badge";
 import Paper from "@mui/material/Paper";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AppbarContext from "../appbarcontext";
+import CartContext from "../cartcontext"
 
 export default function SimpleBottomNavigation() {
   let navigate = useNavigate();
   const { value, updateValue } = useContext(AppbarContext);
+  const {items} =useContext(CartContext);
   return (
     <Box style={{ marginTop: "80px" }}>
       <Paper
@@ -28,9 +31,21 @@ export default function SimpleBottomNavigation() {
             if (newValue === 2) navigate("/account");
           }}
         >
-          <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Cart" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Account" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+
+          <BottomNavigationAction
+            label="Cart"
+            icon={
+              <Badge badgeContent={items.length} color="success">
+                <ShoppingCartIcon />
+              </Badge>
+            }
+          />
+
+          <BottomNavigationAction
+            label="Account"
+            icon={<AccountCircleIcon />}
+          />
         </BottomNavigation>
       </Paper>
     </Box>
