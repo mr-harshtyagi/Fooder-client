@@ -15,7 +15,7 @@ export default function restaurentDisabled(props) {
       />
       <div style={{ display: "inline-block" }}>
         <h5>
-          {props.name} (Offline <i class="bi bi-emoji-frown"></i>)
+          {props.name} (CLOSED <i class="bi bi-emoji-frown"></i>)
         </h5>
         <h6
           className="bi bi-star-fill"
