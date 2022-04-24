@@ -1,13 +1,12 @@
 import Navbar from "../components/navbar";
-import Appbar from "../components/appbar";
+import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function AccountView() {
   return (
     <div className="padding">
       <Navbar />
       <h1>This is Account Page</h1>
-      
-      <Appbar />
+      <SimpleBottomNavigation/>
     </div>
   );
 }

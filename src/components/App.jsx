@@ -1,11 +1,11 @@
 import Navbar from "./navbar";
-import Appbar from "./appbar";
 import Card from "./featured-card";
 import Restaurent from "./restaurent";
 import RestaurentDisabled from "./restaurent-disabled";
 import { useEffect, useState } from "react";
 import SyncLoader from "react-spinners/SyncLoader"
 import axios from "axios";
+import SimpleBottomNavigation from "./bottomnavigation";
 
 function App() {
   const [restaurents, setRestaurents] = useState([]); 
@@ -70,7 +70,7 @@ function App() {
           </div>
         )}
       </div>
-      <Appbar />
+      <SimpleBottomNavigation/>
     </div>
   );
 

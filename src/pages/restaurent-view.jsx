@@ -1,10 +1,10 @@
 import Navbar from "../components/navbar"
-import Appbar from "../components/appbar";
 import { useParams,useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import Dish from "../components/dish";
 import axios from "axios";
 import SyncLoader from "react-spinners/SyncLoader"
+import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function RestaurentView() {
   let params = useParams();
@@ -90,8 +90,7 @@ export default function RestaurentView() {
           <SyncLoader color={"#444645"} size={15} />
         </div>
       )}
-
-      <Appbar />
+      <SimpleBottomNavigation/>
     </div>
   );
 }

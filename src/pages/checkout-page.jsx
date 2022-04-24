@@ -1,10 +1,10 @@
 import Navbar from "../components/navbar";
-import Appbar from "../components/appbar";
 import { useContext, useEffect, useState } from "react";
 import CartContext from "../cartcontext";
 import { Link } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader"
 import axios from 'axios'
+import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function Checkout() {
   const {items,setItems,setTotal} = useContext(CartContext);
@@ -69,7 +69,7 @@ export default function Checkout() {
         </div>
       )}
 
-      <Appbar />
+      <SimpleBottomNavigation/>
     </div>
   );
 }

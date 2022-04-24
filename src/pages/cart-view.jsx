@@ -1,8 +1,8 @@
 import Navbar from "../components/navbar";
-import Appbar from "../components/appbar";
-import { useContext, useEffect, useState} from "react";
+import { useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../cartcontext";
+import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function CartView() {
   let a;
@@ -105,8 +105,7 @@ export default function CartView() {
           Please ADD items from the same Restaurent.
         </h5>
       )}
-
-      <Appbar />
+      <SimpleBottomNavigation/>
     </div>
   );
 }
