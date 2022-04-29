@@ -23,7 +23,7 @@ export default function CartView() {
               style={{ fontWeight: "600", fontSize: "1.5rem" }}
             >
               {item.nonveg ? (
-                <div>
+                <div style={{float:"left",paddingRight:"8px"}}>
                   <img
                     style={{
                       height: "20px",
