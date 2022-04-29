@@ -41,7 +41,7 @@ export default function Dish(props) {
           {props.des}
         </h6>
         <button
-          onClick={()=> addToCart(props.name, props.price, props.id)}
+          onClick={()=> addToCart(props.name, props.price, props.id,props.resName,props.nonveg)}
           className="btn btn-outline-success"
           style={{ float: "right", marginRight: "15px" ,marginBottom:"10px"}}
         >

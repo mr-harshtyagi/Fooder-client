@@ -18,18 +18,47 @@ export default function CartView() {
       {items.map((item, index) => {
         return (
           <div className="row">
-            <h5 className="col" style={{ fontWeight: "600" }}>
+            <h5
+              className="col col-8"
+              style={{ fontWeight: "600", fontSize: "1.5rem" }}
+            >
+              {item.nonveg ? (
+                <img
+                  style={{ height: "20px", width: "20px", marginBottom: "2px" }}
+                  src="images/nonveg.png"
+                  alt=""
+                />
+              ) : (
+                <img
+                  style={{ height: "20px", width: "20px", marginBottom: "2px" }}
+                  src="images/veg.png"
+                  alt=""
+                />
+              )}{" "}
               {item.name}
+              <p
+                style={{
+                  fontWeight: "600",
+                  color: "grey",
+                  fontSize: "1rem",
+                  paddingLeft: "27px",
+                }}
+              >
+                {item.resName}
+              </p>
             </h5>
+
             <h6
-              className="col"
+              className="col col-4"
               style={{ fontSize: "1rem", color: "black", textAlign: "center" }}
             >
               {"₹ "}
               {item.price}{" "}
               <i
-                onClick={() => {removeDish(index)
-                setDifferentRestaurent(false)}}
+                onClick={() => {
+                  removeDish(index);
+                  setDifferentRestaurent(false);
+                }}
                 className="bi bi-trash-fill"
                 style={{ marginLeft: "20px", fontSize: "1.2rem", color: "red" }}
               ></i>
@@ -39,10 +68,10 @@ export default function CartView() {
       })}
       <hr />
       <div className="row">
-        <h5 className="col" style={{ fontWeight: "800" }}>
-          Total :
+        <h5 className="col col-8" style={{ fontWeight: "800" }}>
+          Item Total :
         </h5>
-        <h5 className="col" style={{ fontWeight: "800", textAlign: "center" }}>
+        <h5 className="col col-4" style={{ fontWeight: "800", textAlign: "center" }}>
           {"₹ "}
           {total}
         </h5>

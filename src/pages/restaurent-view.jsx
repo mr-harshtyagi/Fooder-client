@@ -75,6 +75,7 @@ export default function RestaurentView() {
                   <Dish
                     key={dish.id}
                     id={dish.id}
+                    resName ={dish.resName}
                     img={dish.img}
                     name={dish.name}
                     price={dish.price}
