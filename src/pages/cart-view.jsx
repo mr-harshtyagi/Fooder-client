@@ -23,17 +23,29 @@ export default function CartView() {
               style={{ fontWeight: "600", fontSize: "1.5rem" }}
             >
               {item.nonveg ? (
-                <img
-                  style={{ height: "20px", width: "20px", marginBottom: "2px" }}
-                  src="images/nonveg.png"
-                  alt=""
-                />
+                <div>
+                  <img
+                    style={{
+                      height: "20px",
+                      width: "20px",
+                      marginBottom: "2px",
+                    }}
+                    src="images/nonveg.png"
+                    alt=""
+                  />
+                </div>
               ) : (
-                <img
-                  style={{ height: "20px", width: "20px", marginBottom: "2px" }}
-                  src="images/veg.png"
-                  alt=""
-                />
+                <div style={{float:"left",paddingRight:"8px"}}>
+                  <img
+                    style={{
+                      height: "20px",
+                      width: "20px",
+                      marginBottom: "2px",
+                    }}
+                    src="images/veg.png"
+                    alt=""
+                  />
+                </div>
               )}{" "}
               {item.name}
               <p
