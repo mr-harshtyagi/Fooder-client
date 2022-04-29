@@ -23,7 +23,9 @@ export default function CartView() {
               style={{ fontWeight: "600", fontSize: "1.5rem" }}
             >
               {item.nonveg ? (
-                <div style={{float:"left",paddingRight:"8px"}}>
+                <div
+                  style={{ float: "left", height: "100%", paddingRight: "8px" }}
+                >
                   <img
                     style={{
                       height: "20px",
@@ -35,7 +37,9 @@ export default function CartView() {
                   />
                 </div>
               ) : (
-                <div style={{float:"left",paddingRight:"8px"}}>
+                <div
+                  style={{ float: "left", height: "100%", paddingRight: "8px" }}
+                >
                   <img
                     style={{
                       height: "20px",
