@@ -1,10 +1,11 @@
 
 export default function Navbar() {
   return (
-    <div style={{ marginBottom: "100px" }}>
+    <div style={{ marginBottom: "90px" }}>
       <nav
         style={{
           boxShadow: "0px 0px 8px 0px rgba(0,0,0,1)",
+          paddingBottom:"0px"
         }}
         className="navbar fixed-top navbar-light bg-dark"
       >
