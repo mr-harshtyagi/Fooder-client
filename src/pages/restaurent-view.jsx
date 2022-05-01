@@ -90,24 +90,26 @@ export default function RestaurentView() {
           <div
             style={{
               position: "fixed",
-              bottom: "70px",
-              right: "0px",
+              bottom: "65px",
+              right: "10px",
               zIndex: "1",
-              width: "100%",
-              textAlign: "center",
             }}
           >
             <button
               style={{
-                display: "inline-block",
-                borderRadius: "20px",
+                borderRadius: "30px",
+                paddingLeft: "15px",
+                paddingRight: "15px",
+                paddingBottom: "8px",
+                
               }}
               className="btn btn-dark"
               onClick={() => {
                 handleShow();
               }}
             >
-              <strong>BROWSE MENU</strong>{" "}
+              <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
+              <br /> <strong>MENU</strong>
             </button>
           </div>
         </div>
