@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import "bootstrap/dist/css/bootstrap.min.css";
 import RestaurentView from "./pages/restaurent-view"
 import CartView from "./pages/cart-view";
 import Checkout from "./pages/checkout-page";

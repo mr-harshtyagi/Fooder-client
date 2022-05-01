@@ -8,9 +8,7 @@ export default function CartView() {
   let a;
   let navigate = useNavigate();
   const { items, total, removeDish } = useContext(CartContext);
-  const [cartEmpty,setCartEmpty]=useState(false);
   const [differentRestaurent,setDifferentRestaurent] =useState(false)
-  
   return (
     <div className="padding">
       <Navbar />
@@ -117,28 +115,41 @@ export default function CartView() {
             </h5>
           </div>
           <hr />
+          {differentRestaurent && (
+            <div>
+              <h5
+                style={{
+                  position: "relative",
+                  padding: "2px",
+                  textAlign: "center",
+                  color: "white",
+                  backgroundColor: "#FF6B6B",
+                  borderRadius: "20px",
+                }}
+              >
+                <strong>Please add items from the same Restaurent</strong>
+              </h5>
+            </div>
+          )}
+
           <div className="col text-center">
             <button
               onClick={() => {
-                if (total === 0) {
-                  setCartEmpty(true);
+                let diffres = 0;
+                for (a = 0; a < items.length - 1; a++) {
+                  if (
+                    Math.floor(Number(items[a].id / 1000)) !==
+                    Math.floor(Number(items[a + 1].id / 1000))
+                  ) {
+                    diffres = 1;
+                    break;
+                  }
+                }
+                if (diffres === 0) {
+                  navigate("/checkout");
                 } else {
-                  let diffres = 0;
-                  for (a = 0; a < items.length - 1; a++) {
-                    if (
-                      Math.floor(Number(items[a].id / 1000)) !==
-                      Math.floor(Number(items[a + 1].id / 1000))
-                    ) {
-                      diffres = 1;
-                      break;
-                    }
-                  }
-                  if (diffres === 0) {
-                    navigate("/checkout");
-                  } else {
-                    setDifferentRestaurent(true);
-                    console.log("Not allowed for checkout");
-                  }
+                  setDifferentRestaurent(true);
+                  console.log("Not allowed for checkout");
                 }
               }}
               style={{ borderRadius: "30px" }}
@@ -147,37 +158,14 @@ export default function CartView() {
               Proceed to Checkout
             </button>
           </div>
-          {cartEmpty && (
-            <h5
-              style={{
-                marginTop: "20px",
-                textAlign: "center",
-                color: "white",
-                backgroundColor: "black",
-                borderRadius: "20px",
-              }}
-            >
-              Please ADD items to your Cart
-            </h5>
-          )}
-          {differentRestaurent && (
-            <h5
-              style={{
-                marginTop: "20px",
-                textAlign: "center",
-                color: "white",
-                backgroundColor: "black",
-                borderRadius: "20px",
-              }}
-            >
-              Please ADD items from the same Restaurent.
-            </h5>
-          )}
         </>
       ) : (
         <>
           <div className="text-center pt-4">
-            <i style={{fontSize:"7rem",color:"grey"}} className="bi bi-cart-x"></i>
+            <i
+              style={{ fontSize: "7rem", color: "grey" }}
+              className="bi bi-cart-x"
+            ></i>
             <h2 style={{ fontWeight: "400" }}>YOUR CART IS EMPTY</h2>
             <p>Please add some items from the menu</p>
             <Link to={"/"}>

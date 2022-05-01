@@ -14,6 +14,7 @@ export default function Dish(props) {
             height: "100px",
             width: "100px",
             borderRadius: "5px",
+            marginLeft:"5px"
           }}
           src={props.img}
           alt="dish-img"

@@ -60,7 +60,7 @@ export default function Checkout() {
             </tbody>
           </table>
           <Link to={"/"}>
-            <button className="btn btn-primary">Home</button>
+            <button className="btn btn-success">Home</button>
           </Link>
         </>
       ) : (
