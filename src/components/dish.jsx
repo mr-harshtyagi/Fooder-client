@@ -14,7 +14,7 @@ export default function Dish(props) {
             height: "100px",
             width: "100px",
             borderRadius: "5px",
-            marginLeft:"5px"
+            marginLeft: "5px",
           }}
           src={props.img}
           alt="dish-img"
@@ -22,13 +22,13 @@ export default function Dish(props) {
 
         {props.nonveg ? (
           <img
-            style={{ height: "20px", width: "20px",marginBottom:"2px" }}
+            style={{ height: "20px", width: "20px", marginBottom: "2px" }}
             src="images/nonveg.png"
             alt="icon"
           />
         ) : (
           <img
-            style={{ height: "20px", width: "20px",marginBottom:"2px" }}
+            style={{ height: "20px", width: "20px", marginBottom: "2px" }}
             src="images/veg.png"
             alt="icon"
           />
@@ -41,15 +41,40 @@ export default function Dish(props) {
         <h6 style={{ fontSize: "0.8rem", fontWeight: "400", color: "grey" }}>
           {props.des}
         </h6>
-        <button
-          onClick={()=> addToCart(props.name, props.price, props.id,props.resName,props.nonveg)}
-          className="btn btn-outline-success"
-          style={{ float: "right", marginRight: "15px" ,marginBottom:"10px"}}
-        >
-          <strong>ADD +</strong>
-        </button>
+        {props.status ? (
+          <button
+            onClick={() =>
+              addToCart(
+                props.name,
+                props.price,
+                props.id,
+                props.resName,
+                props.nonveg
+              )
+            }
+            className="btn btn-outline-success"
+            style={{
+              float: "right",
+              marginRight: "15px",
+              marginBottom: "10px",
+            }}
+          >
+            <strong>ADD +</strong>
+          </button>
+        ) : (
+          <button
+            style={{
+              float: "right",
+              marginBottom: "10px",
+            }}
+            className="btn btn-danger"
+            
+          >
+            <strong>Out of Stock</strong>
+          </button>
+        )}
       </div>
-      <br/>
+      <br />
       <hr />
     </div>
   );

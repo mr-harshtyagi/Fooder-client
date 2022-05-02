@@ -114,7 +114,6 @@ export default function RestaurentView() {
                       </h2>
                       {category.items.map((dish) => {
                         return (
-                          dish.status && (
                             <Dish
                               key={dish.id}
                               id={dish.id}
@@ -123,9 +122,10 @@ export default function RestaurentView() {
                               name={dish.name}
                               price={dish.price}
                               des={dish.des}
+                              status={dish.status}
                               nonveg={dish.nonveg}
                             />
-                          )
+              
                         );
                       })}
                     </>
