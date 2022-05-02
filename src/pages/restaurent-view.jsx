@@ -3,18 +3,31 @@ import { useParams,useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import Dish from "../components/dish";
 import axios from "axios";
-import { Button,Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import SyncLoader from "react-spinners/SyncLoader"
 import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function RestaurentView() {
   let params = useParams();
   let navigate =useNavigate();
+  const categories = [
+    "Category 1",
+    "Category 2",
+    "Category 3",
+    "Category 4",
+    "Category 5",
+    "Category 6",
+    "Category 7",
+    
+  ];
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
    const [restaurent, setRestaurent] = useState({});
+   const [dishes, setDishes] = useState([]);
    const [isLoaded, setIsLoaded] =useState(false);
+   const [dishesLoaded, setDishesLoaded] = useState(false);
+
   useEffect(() => {
         axios
           .get(
@@ -28,6 +41,18 @@ export default function RestaurentView() {
           .catch(function (error) {
             console.log(error);
           });
+          axios
+            .get(
+              `https://fooder-app-server.herokuapp.com/alldishes/${params.restaurentId}`
+            )
+            .then(function (response) {
+              setDishes(response.data);
+               setDishesLoaded(true);
+            
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
 
   }, []); 
   return (
@@ -68,23 +93,49 @@ export default function RestaurentView() {
           </h6>
 
           <div>
-            <h4 style={{ marginTop: "40px" }}>
-              <strong>Menu (5)</strong>{" "}
-            </h4>
-            {restaurent.dish.map(
-              (dish) =>
-                dish.status && (
-                  <Dish
-                    key={dish.id}
-                    id={dish.id}
-                    resName={dish.resName}
-                    img={dish.img}
-                    name={dish.name}
-                    price={dish.price}
-                    des={dish.des}
-                    nonveg={dish.nonveg}
-                  />
-                )
+            <h2 style={{ marginTop: "40px", textAlign: "center" }}>
+              <strong>-- Menu --</strong>{" "}
+            </h2>
+            {dishesLoaded ? (
+              <>
+                {dishes.map((category) => {
+                  return (
+                    <>
+                      <h2
+                        style={{
+                          fontWeight: "700",
+                          fontSize: "2rem",
+                        }}
+                      >
+                        {category.category_name}
+                        {" ("}
+                        {category.items.length}
+                        {") "}
+                      </h2>
+                      {category.items.map((dish) => {
+                        return (
+                          dish.status && (
+                            <Dish
+                              key={dish.id}
+                              id={dish.id}
+                              resName={dish.resName}
+                              img={dish.img}
+                              name={dish.name}
+                              price={dish.price}
+                              des={dish.des}
+                              nonveg={dish.nonveg}
+                            />
+                          )
+                        );
+                      })}
+                    </>
+                  );
+                })}
+              </>
+            ) : (
+              <div className="text-center mt-5">
+                <SyncLoader color={"#444645"} size={15} />
+              </div>
             )}
           </div>
           <div
@@ -101,15 +152,13 @@ export default function RestaurentView() {
                 paddingLeft: "15px",
                 paddingRight: "15px",
                 paddingBottom: "8px",
-                
               }}
               className="btn btn-dark"
               onClick={() => {
                 handleShow();
               }}
             >
-              <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
-              <br /> <strong>MENU</strong>
+              <i className="bi bi-list"></i> <strong>MENU</strong>
             </button>
           </div>
         </div>
@@ -119,88 +168,25 @@ export default function RestaurentView() {
         </div>
       )}
       <div>
-        <Modal show={show} onHide={handleClose} centered>
-          <Modal.Body>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 1
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 2
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 3
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 4
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 5
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 6
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 7
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 8
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 9
-            </h3>
-            <h3
-              style={{ cursor: "pointer", marginBottom: "15px" }}
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Category 10
-            </h3>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          style={{ color: "white" }}
+          centered
+        >
+          <Modal.Body style={{ backgroundColor: "black" }}>
+            {categories.map((category) => {
+              return (
+                <h3
+                  style={{ cursor: "pointer", marginBottom: "15px" }}
+                  onClick={() => {
+                    setShow(false);
+                  }}
+                >
+                  {category}
+                </h3>
+              );
+            })}
           </Modal.Body>
         </Modal>
       </div>
