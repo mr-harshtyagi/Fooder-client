@@ -3,26 +3,13 @@ import { useParams,useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import Dish from "../components/dish";
 import axios from "axios";
-import { Modal } from "react-bootstrap";
 import SyncLoader from "react-spinners/SyncLoader"
 import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function RestaurentView() {
   let params = useParams();
   let navigate =useNavigate();
-  const categories = [
-    "Category 1",
-    "Category 2",
-    "Category 3",
-    "Category 4",
-    "Category 5",
-    "Category 6",
-    "Category 7",
-    
-  ];
    const [show, setShow] = useState(false);
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
    const [restaurent, setRestaurent] = useState({});
    const [dishes, setDishes] = useState([]);
    const [isLoaded, setIsLoaded] =useState(false);
@@ -101,7 +88,8 @@ export default function RestaurentView() {
                 {dishes.map((category) => {
                   return (
                     <>
-                      <h2
+                      <div
+                        id={category.category_name}
                         style={{
                           fontWeight: "700",
                           fontSize: "2rem",
@@ -111,21 +99,20 @@ export default function RestaurentView() {
                         {" ("}
                         {category.items.length}
                         {") "}
-                      </h2>
+                      </div>
                       {category.items.map((dish) => {
                         return (
-                            <Dish
-                              key={dish.id}
-                              id={dish.id}
-                              resName={dish.resName}
-                              img={dish.img}
-                              name={dish.name}
-                              price={dish.price}
-                              des={dish.des}
-                              status={dish.status}
-                              nonveg={dish.nonveg}
-                            />
-              
+                          <Dish
+                            key={dish.id}
+                            id={dish.id}
+                            resName={dish.resName}
+                            img={dish.img}
+                            name={dish.name}
+                            price={dish.price}
+                            des={dish.des}
+                            status={dish.status}
+                            nonveg={dish.nonveg}
+                          />
                         );
                       })}
                     </>
@@ -155,7 +142,7 @@ export default function RestaurentView() {
               }}
               className="btn btn-dark"
               onClick={() => {
-                handleShow();
+                setShow(true);
               }}
             >
               <i className="bi bi-list"></i> <strong>MENU</strong>
@@ -167,29 +154,50 @@ export default function RestaurentView() {
           <SyncLoader color={"#444645"} size={15} />
         </div>
       )}
-      <div>
-        <Modal
-          show={show}
-          onHide={handleClose}
-          style={{ color: "white" }}
-          centered
+      {show && (
+        <div
+          style={{
+            textAlign: "center",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            backgroundColor: "black",
+            opacity: "0.93",
+            width: "65%",
+            height: "400px",
+            position: "fixed",
+            borderRadius: "20px",
+            bottom: 65,
+            right: 10,
+            zIndex: "2",
+            overflowY: "scroll",
+          }}
         >
-          <Modal.Body style={{ backgroundColor: "black" }}>
-            {categories.map((category) => {
-              return (
-                <h3
-                  style={{ cursor: "pointer", marginBottom: "15px" }}
+          {dishes.map((category) => {
+            return (
+              <>
+                <a
+                  href={"#" + category.category_name}
+                  style={{
+                    fontSize: "1.8rem",
+                    fontWeight: "500",
+                    color: "white",
+                    marginTop: "25px",
+                    textDecoration: "none",
+                  }}
                   onClick={() => {
                     setShow(false);
                   }}
                 >
-                  {category}
-                </h3>
-              );
-            })}
-          </Modal.Body>
-        </Modal>
-      </div>
+                  {category.category_name}
+                  {"  ( "} {category.items.length}
+                  {" ) "}
+                </a>
+                <br /> 
+              </>
+            );
+          })}
+        </div>
+      )}
       <SimpleBottomNavigation />
     </div>
   );
