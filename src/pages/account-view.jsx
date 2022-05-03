@@ -3,7 +3,7 @@ import SimpleBottomNavigation from "../components/bottomnavigation";
 
 export default function AccountView() {
   return (
-    <div className="padding">
+    <div>
       <Navbar />
       <h1>This is Account Page</h1>
       <SimpleBottomNavigation/>
