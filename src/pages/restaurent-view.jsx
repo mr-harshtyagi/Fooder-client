@@ -17,17 +17,12 @@ export default function RestaurentView(props) {
    const [dishesLoaded, setDishesLoaded] = useState(false);
     useEffect(() => {
       const checkIfClickedOutside = (e) => {
-        // If the menu is open and the clicked target is not within the menu,
-        // then close the menu
         if (show && ref.current && !ref.current.contains(e.target)) {
           setShow(false);
         }
       };
-
       document.addEventListener("mousedown", checkIfClickedOutside);
-
       return () => {
-        // Cleanup the event listener
         document.removeEventListener("mousedown", checkIfClickedOutside);
       };
     }, [show]);
@@ -51,13 +46,11 @@ export default function RestaurentView(props) {
             )
             .then(function (response) {
               setDishes(response.data);
-               setDishesLoaded(true);
-            
+               setDishesLoaded(true);      
             })
             .catch(function (error) {
               console.log(error);
             });
-
   }, []); 
   return (
     <div>
@@ -96,7 +89,14 @@ export default function RestaurentView(props) {
             {restaurent.type} | {restaurent.category}
           </h6>
           <div>
-            <h2 style={{ marginTop: "50px",marginBottom: "20px", textAlign: "center",fontSize:"1.8rem" }}>
+            <h2
+              style={{
+                marginTop: "50px",
+                marginBottom: "20px",
+                textAlign: "center",
+                fontSize: "1.8rem",
+              }}
+            >
               <strong>-- Menu --</strong>{" "}
             </h2>
             {dishesLoaded ? (
@@ -116,7 +116,7 @@ export default function RestaurentView(props) {
                         {category.items.length}
                         {") "}
                       </div>
-                      
+
                       {category.items.map((dish) => {
                         return (
                           <Dish
@@ -152,14 +152,16 @@ export default function RestaurentView(props) {
           >
             <button
               style={{
-                borderRadius: "30px",
-                paddingLeft: "15px",
-                paddingRight: "15px",
-                paddingBottom: "8px",
+                borderRadius: "35px",
+                width: "70px",
+                height: "70px",
+                padding: "10px 5px",
+                fontSize: "1rem",
+                textAlign: "center",
               }}
               className="btn btn-dark"
               onClick={() => {
-                setShow(oldstate => !oldstate);
+                setShow((oldstate) => !oldstate);
               }}
             >
               <i className="bi bi-list"></i> <strong>MENU</strong>
