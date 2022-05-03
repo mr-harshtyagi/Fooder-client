@@ -1,7 +1,7 @@
 
 export default function Navbar() {
   return (
-    <div style={{ }}>
+    <div>
       <nav
         style={{
           boxShadow: "0px 0px 8px 0px rgba(0,0,0,1)",
