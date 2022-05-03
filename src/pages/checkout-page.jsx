@@ -29,10 +29,10 @@ export default function Checkout() {
   }
   ,[]) 
   return (
-    <div className="padding text-center">
+    <div>
       <Navbar />
       {isLoaded ? (
-        <>
+        <div className="text-center" style={{ padding: "0 10px" }}>
           <i
             style={{ fontSize: "6rem", color: "#1AA260" }}
             className="bi bi-check-circle-fill"
@@ -62,14 +62,14 @@ export default function Checkout() {
           <Link to={"/"}>
             <button className="btn btn-success">Home</button>
           </Link>
-        </>
+        </div>
       ) : (
         <div className="text-center mt-5">
           <SyncLoader color={"#444645"} size={15} />
         </div>
       )}
 
-      <SimpleBottomNavigation/>
+      <SimpleBottomNavigation />
     </div>
   );
 }

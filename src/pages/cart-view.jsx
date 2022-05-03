@@ -10,11 +10,11 @@ export default function CartView() {
   const { items, total, removeDish } = useContext(CartContext);
   const [differentRestaurent,setDifferentRestaurent] =useState(false)
   return (
-    <div className="padding">
+    <div>
       <Navbar />
       {items.length !== 0 ? (
-        <>
-          <h1 style={{ marginBottom: "30px", fontWeight: "700" }}>
+        <div style={{padding:"0 10px"}}>
+          <h1 style={{ marginBottom: "30px",paddingTop:"10px", fontWeight: "700" }}>
             {" "}
             Cart Items
           </h1>
@@ -158,7 +158,7 @@ export default function CartView() {
               Proceed to Checkout
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <>
           <div className="text-center pt-4">
