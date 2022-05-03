@@ -1,19 +1,36 @@
 import Navbar from "../components/navbar"
 import { useParams,useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import Dish from "../components/dish";
 import axios from "axios";
 import SyncLoader from "react-spinners/SyncLoader"
 import SimpleBottomNavigation from "../components/bottomnavigation";
 
-export default function RestaurentView() {
+export default function RestaurentView(props) {
   let params = useParams();
   let navigate =useNavigate();
+  const ref = useRef();
    const [show, setShow] = useState(false);
    const [restaurent, setRestaurent] = useState({});
    const [dishes, setDishes] = useState([]);
    const [isLoaded, setIsLoaded] =useState(false);
    const [dishesLoaded, setDishesLoaded] = useState(false);
+    useEffect(() => {
+      const checkIfClickedOutside = (e) => {
+        // If the menu is open and the clicked target is not within the menu,
+        // then close the menu
+        if (show && ref.current && !ref.current.contains(e.target)) {
+          setShow(false);
+        }
+      };
+
+      document.addEventListener("mousedown", checkIfClickedOutside);
+
+      return () => {
+        // Cleanup the event listener
+        document.removeEventListener("mousedown", checkIfClickedOutside);
+      };
+    }, [show]);
 
   useEffect(() => {
         axios
@@ -142,7 +159,7 @@ export default function RestaurentView() {
               }}
               className="btn btn-dark"
               onClick={() => {
-                setShow(true);
+                setShow(oldstate => !oldstate);
               }}
             >
               <i className="bi bi-list"></i> <strong>MENU</strong>
@@ -156,18 +173,19 @@ export default function RestaurentView() {
       )}
       {show && (
         <div
+          className="wrapper"
+          ref={ref}
           style={{
             textAlign: "center",
             paddingTop: "10px",
             paddingBottom: "10px",
             backgroundColor: "black",
-            opacity: "0.93",
             width: "65%",
-            height: "400px",
+            height: "300px",
             position: "fixed",
             borderRadius: "20px",
-            bottom: 65,
-            right: 10,
+            bottom: 63,
+            right: 8,
             zIndex: "2",
             overflowY: "scroll",
           }}
@@ -178,7 +196,7 @@ export default function RestaurentView() {
                 <a
                   href={"#" + category.category_name}
                   style={{
-                    fontSize: "1.8rem",
+                    fontSize: "1.5rem",
                     fontWeight: "500",
                     color: "white",
                     marginTop: "25px",
@@ -188,11 +206,27 @@ export default function RestaurentView() {
                     setShow(false);
                   }}
                 >
-                  {category.category_name}
-                  {"  ( "} {category.items.length}
-                  {" ) "}
+                  <div
+                    style={{
+                      display: "inline",
+                      float: "left",
+                      paddingLeft: "25px",
+                    }}
+                  >
+                    {category.category_name}
+                  </div>
+                  <div
+                    style={{
+                      display: "inline",
+                      float: "right",
+                      paddingRight: "25px",
+                    }}
+                  >
+                    {"  ( "} {category.items.length}
+                    {" ) "}
+                  </div>
                 </a>
-                <br /> 
+                <br />
               </>
             );
           })}
@@ -202,3 +236,4 @@ export default function RestaurentView() {
     </div>
   );
 }
+
