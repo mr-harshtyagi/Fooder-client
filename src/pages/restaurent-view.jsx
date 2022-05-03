@@ -95,9 +95,8 @@ export default function RestaurentView(props) {
           <h6 style={{ fontSize: "0.8rem", color: "grey" }}>
             {restaurent.type} | {restaurent.category}
           </h6>
-
           <div>
-            <h2 style={{ marginTop: "40px", textAlign: "center" }}>
+            <h2 style={{ marginTop: "50px",marginBottom: "20px", textAlign: "center",fontSize:"1.8rem" }}>
               <strong>-- Menu --</strong>{" "}
             </h2>
             {dishesLoaded ? (
@@ -117,6 +116,7 @@ export default function RestaurentView(props) {
                         {category.items.length}
                         {") "}
                       </div>
+                      
                       {category.items.map((dish) => {
                         return (
                           <Dish
