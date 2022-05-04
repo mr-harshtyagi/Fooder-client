@@ -7,8 +7,8 @@ export default function restaurentDisabled(props) {
         style={{
           float: "left",
           marginRight: "20px",
-          height: "80px",
-          width: "80px",
+          height: "74px",
+          width: "74px",
         }}
         src={props.img}
         alt="res-img"
