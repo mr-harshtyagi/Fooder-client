@@ -8,8 +8,8 @@ export default function restaurent(props) {
                 style={{
                   float: "left",
                   marginRight: "20px",
-                  height: "64px",
-                  width: "64px",
+                  height: "80px",
+                  width: "80px",
                 }}
                 src={props.img}
                 alt="res-img"
