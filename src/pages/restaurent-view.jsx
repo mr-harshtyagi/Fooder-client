@@ -109,7 +109,7 @@ export default function RestaurentView(props) {
               <h4
                 style={{
                   fontSize: "2rem",
-                  color: "green",
+                  color: "#4E944F", //#F55353 -red #4E944F-green
                   fontWeight: "900",
                 }}
               >
