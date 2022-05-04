@@ -2,38 +2,32 @@
 export default function restaurentDisabled(props) {
   
   return (
-    <div style={{ textAlign: "left" }} className="restaurent-card-offline">
-      <div className="row">
-        <div className="col col-lg-1 col-md-2 col-3">
-          <img
-            style={{
-              float: "left",
-              marginRight: "20px",
-              height: "80px",
-              width: "80px",
-            }}
-            src={props.img}
-            alt="res-img"
-          />
-        </div>
-        <div className="col col-lg-11 col-md-10 col-9">
-          <div style={{ display: "inline-block" }}>
-            <h5>{props.name} (CLOSED)</h5>
-            <h6
-              className="bi bi-star-fill"
-              style={{ fontSize: "0.8rem", color: "black" }}
-            >
-              {" "}
-              {props.rating}
-              <span> | {props.type}</span>
-            </h6>
-            <h6
-              style={{ fontSize: "0.8rem", fontWeight: "400", color: "black" }}
-            >
-              {props.category}
-            </h6>
-          </div>
-        </div>
+    <div style={{ textAlign: "left"}} className="restaurent-card-offline">
+      <img
+        style={{
+          float: "left",
+          marginRight: "15px",
+          height: "70px",
+          width: "70px",
+        }}
+        src={props.img}
+        alt="res-img"
+      />
+      <div style={{ display: "inline-block" }}>
+        <h5>
+          {props.name} (CLOSED)
+        </h5>
+        <h6
+          className="bi bi-star-fill"
+          style={{ fontSize: "0.8rem", color: "black" }}
+        >
+          {" "}
+          {props.rating}
+          <span> | {props.type}</span>
+        </h6>
+        <h6 style={{ fontSize: "0.8rem", fontWeight: "400", color: "black" }}>
+          {props.category}
+        </h6>
       </div>
     </div>
   );

@@ -89,9 +89,36 @@ export default function RestaurentView(props) {
             {restaurent.type} | {restaurent.category}
           </h6>
           <div>
+            <div
+              className="mt-5"
+              style={{
+                backgroundColor: "#E9D5DA",
+                padding: "10px",
+                borderRadius: "10px",
+                fontWeight: "900",
+              }}
+            >
+              <h4
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "900",
+                }}
+              >
+                Estimated Waiting Time ~{" "}
+              </h4>
+              <h4
+                style={{
+                  fontSize: "2rem",
+                  color: "green",
+                  fontWeight: "900",
+                }}
+              >
+                10 mins
+              </h4>
+            </div>
             <h2
               style={{
-                marginTop: "50px",
+                marginTop: "40px",
                 marginBottom: "20px",
                 textAlign: "center",
                 fontSize: "1.8rem",
