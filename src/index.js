@@ -9,6 +9,7 @@ import { CartProvider } from "./cartcontext";
 import { AppbarProvider } from "./appbarcontext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AccountView from "./pages/account-view";
+import FirstPage from "./pages/firstpage";
 
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/cart" element={<CartView />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<AccountView />} />
+          <Route path="/firstpage" element={<FirstPage />} />
         </Routes>
       </BrowserRouter>
     </AppbarProvider>
