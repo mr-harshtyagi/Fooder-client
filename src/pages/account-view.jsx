@@ -1,7 +1,9 @@
 import Navbar from "../components/navbar";
 import SimpleBottomNavigation from "../components/bottomnavigation";
+import { useNavigate } from "react-router-dom";
 
 export default function AccountView() {
+  let navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -29,6 +31,9 @@ export default function AccountView() {
           }}
         >
           <div
+            onClick={() => {
+              navigate("/orderstatus");
+            }}
             style={{
               backgroundColor: "#E9D5DA",
               borderRadius: "10px",
@@ -53,6 +58,9 @@ export default function AccountView() {
             ></div>
           </div>
           <div
+            onClick={() => {
+              navigate("/orderhistory");
+            }}
             style={{
               backgroundColor: "#E9D5DA",
               borderRadius: "10px",
