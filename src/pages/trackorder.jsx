@@ -32,7 +32,7 @@ useEffect(()=>{
     <div>
       <Navbar />
       <div style={{ padding: "10px", marginTop: "10px" }}>
-        <div style={{textAlign:"center"}}>
+        <div style={{ textAlign: "center" }}>
           <h1 style={{ marginBottom: "20px", fontSize: "1.7rem" }}>
             --Order Status--
           </h1>
@@ -44,7 +44,7 @@ useEffect(()=>{
             padding: "10px",
             borderRadius: "10px",
             fontWeight: "900",
-            marginBottom:"10px"
+            marginBottom: "10px",
           }}
         >
           <h4
@@ -73,21 +73,21 @@ useEffect(()=>{
             width: "100%",
           }}
         >
-          <h2 style={{ fontSize: "1.2rem" }}>
+          <h2 style={{ fontSize: "1.2rem", fontWeight: `${fontWeight}` }}>
             <i
               style={{ marginRight: "10px", color: "green" }}
               className="bi bi-check-circle-fill"
             ></i>
             Order Placed
           </h2>
-          <h2 style={{ fontSize: "1.2rem" }}>
+          <h2 style={{ fontSize: "1.2rem", fontWeight: `${fontWeight}` }}>
             <i
               style={{ marginRight: "10px", color: "green" }}
               className="bi bi-check-circle-fill"
             ></i>
             Order Accepted
           </h2>
-          <h2 style={{ fontSize: "1.2rem" }}>
+          <h2 style={{ fontSize: "1.2rem", fontWeight: `${fontWeight}` }}>
             <i
               style={{ marginRight: "10px", color: "green" }}
               className="bi bi-check-circle-fill"
