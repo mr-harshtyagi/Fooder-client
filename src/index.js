@@ -14,6 +14,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import OrderHistory from "./pages/orderhistory";
 import OrderStatus from "./pages/orderstatus";
+import TrackOrder from "./pages/trackorder";
 
 
 ReactDOM.render(
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Route path="/signup" element={<Signup />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/orderstatus" element={<OrderStatus />} />
+          <Route path="/trackorder" element={<TrackOrder/>} />
         </Routes>
       </BrowserRouter>
     </AppbarProvider>
