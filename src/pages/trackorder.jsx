@@ -44,6 +44,7 @@ useEffect(()=>{
             padding: "10px",
             borderRadius: "10px",
             fontWeight: "900",
+            marginBottom:"10px"
           }}
         >
           <h4
